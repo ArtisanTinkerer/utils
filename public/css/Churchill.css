@@ -1,0 +1,89 @@
+/*For the Editor*/
+
+
+div.DTE_Inline input {
+    border: none;
+    background-color: transparent;
+    padding: 0 !important;
+    font-size: 90%;
+}
+
+
+
+div.DTE_Inline input:focus {
+    outline: none;
+    background-color: transparent;
+}
+
+
+/*This is to get rid of the gridlines*/
+table, th, td {
+    /*border: 1px solid black;
+    border: none;*/
+    border-top: none !important;
+    border-bottom: none !important;
+}
+
+
+/*Bootstrap anchors on the panel headers are white*/
+
+.white-link {
+    color: white;
+}
+
+/*Used this to pad a glyphicon on a panel header*/
+.pad-right {
+    padding-right:10px;
+}
+
+
+
+.hidden-gif{
+    display: none;
+}
+
+.blank_row
+{
+    height: 10px !important; /* Overwrite any previous rules */
+    background-color: #FFFFFF;
+}
+
+
+
+
+body {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background: none;
+}
+
+.full {
+    background: url(/assets/images/background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    opacity: 0.9;
+}
+
+
+
+.voffset { margin-top: 150px; }
+
+.transparent {
+
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/*
+!*jquery ui radio buttons*!
+ .dashRadio.ui-state-active { background: #00a65a;
+     border-color:black;}
+.dashRadio.ui-state-hover { background: #00a65a;
+    border-color:black;}
+*/
+
+
+
+
+
