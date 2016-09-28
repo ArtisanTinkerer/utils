@@ -61,7 +61,7 @@
                         </div>
 
                         <div class="col-xs-6 col-sm-2">
-                            {!!  Form::text('parameter', '5ADA50051',['class' => 'form-control','multiple' => 'multiple','id' => 'streams']) !!}
+                            {!!  Form::text('parameter', null,['class' => 'form-control','multiple' => 'multiple','id' => 'streams']) !!}
                         </div>
                     </div>
 
