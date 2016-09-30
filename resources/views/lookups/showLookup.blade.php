@@ -135,6 +135,9 @@
                 buttons: [
                 {
                         extend: 'print',
+                    exportOptions: {
+                        columns: ':visible'
+                    },
                         title: '{{ $title }}',
 
                         orientation: 'landscape',
