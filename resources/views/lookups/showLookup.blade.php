@@ -17,20 +17,25 @@
 
     <div class="panel-body">
 
-        <table style="width:100%" class="table-bordered table-responsive table-striped" id="lookupTable">
+        <table class="table table-responsive" id="lookupTable">
+        {{--<table style="width:100%" class="table-bordered table-responsive table-striped" id="lookupTable">--}}
 
             <thead class="thead-inverse">
             <tr>
-
+                {{--This is the column headers--}}
                 @foreach($neatHeaders as $neatHeader )
                     <th>
+                        @if($neatHeader != 'Row Highlight') {{--Skip this one, it's just used to add--}}
                         {{ $neatHeader }}
+                        @endif
 
                     </th>
                 @endforeach
 
             </tr>
             </thead>
+
+
 
 
             @foreach($results as $result )
@@ -66,11 +71,27 @@
                 @else
 
 
+
+                    {{--Not a total--}}
+
                 <tr>
                     @for ($column = 0; $column < count($headers); $column++)
+
+
+
+
+
+
                         <td>
+
+
                             {{ $result->$headers[$column] }}
+
+
                         </td>
+
+
+
                     @endfor
                 </tr>
 
@@ -98,6 +119,16 @@
         $(document).ready(function () {
             var table = $('#lookupTable').DataTable({
 
+
+                "columnDefs": [
+                    {
+                        "targets": [ -1 ],
+                        "visible": false,
+                        "searchable": false
+                    }
+
+                ],
+
                 dom: 'Bfrtip',
 
 
@@ -111,15 +142,23 @@
                         title: '{{ $title }}',
 
                         orientation: 'landscape',
-                        
 
                         },
 
-
-
                     'excelHtml5'
 
-                ]
+                ],
+
+
+                //This highlghts a row, if there are no assigned faults
+                "createdRow": function( row, data, dataIndex ) {
+                    if ( data[data.length-1] != '' ) {
+                        $(row).addClass( data[data.length-1] );
+                    }
+                }
+
+
+
 
             });
         });
