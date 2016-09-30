@@ -133,19 +133,15 @@
 
 
                 buttons: [
-                    {
-                        extend: 'pdfHtml5',
-                        orientation: 'landscape',
-
-                    }, {
+                {
                         extend: 'print',
                         title: '{{ $title }}',
 
                         orientation: 'landscape',
 
-                        },
+                        }
 
-                    'excelHtml5'
+
 
                 ],
 
