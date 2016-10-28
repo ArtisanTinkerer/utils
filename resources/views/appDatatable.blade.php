@@ -11,7 +11,7 @@
 	@include('includes.datatablesCSS')
 	@include('includes.churchillStuffCSS')
 
-
+	<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" >
 	@yield('head')
 
 </head>
