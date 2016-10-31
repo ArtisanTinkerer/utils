@@ -16,6 +16,15 @@
 Route::get('/', 'LookupController@index');
 Route::get('lookups', 'LookupController@index');
 
+
+Route::get('mobile', 'LookupController@mobile');
+
+
+Route::post('/mobile', [
+    'as' => 'mobile', 'uses' => 'LookupController@mobile'
+]);
+
+
 Route::post('/lookups', [
     'as' => 'lookups', 'uses' => 'LookupController@index'
 ]);

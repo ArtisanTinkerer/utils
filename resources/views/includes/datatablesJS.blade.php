@@ -10,4 +10,4 @@
 <script type="text/javascript" language="javascript" src="//cdn.datatables.net/buttons/1.1.0/js/buttons.print.min.js"></script>
 <script src="//cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
 <script src="//cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js"></script>
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+

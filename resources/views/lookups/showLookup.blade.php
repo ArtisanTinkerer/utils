@@ -1,26 +1,52 @@
-@extends('appDatatable')
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
-@section('content')
+    <meta http-equiv="Content-type" content="text/html; charset=us-ascii">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <div class="panel-body">
+    <title>IT Utils</title>
 
-        <div>
-            <h1 >{{ $title }}</h1>
-
-
-
-
-        </div>
-
-    </div>
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css">
 
 
-    <div class="panel-body">
 
-        <table class="table table-responsive" id="lookupTable">
+
+
+    <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.3.js">
+    </script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js">
+    </script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js">
+    </script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/fixedheader/3.1.2/js/dataTables.fixedHeader.min.js">
+    </script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js">
+    </script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.1.0/js/responsive.bootstrap.min.js">
+    </script>
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+                <table id="lookupTable" class="display responsive nowrap" cellspacing="0" width="100%">
+
         {{--<table style="width:100%" class="table-bordered table-responsive table-striped" id="lookupTable">--}}
 
-            <thead class="thead-inverse">
+            <thead>
             <tr>
                 {{--This is the column headers--}}
                 @foreach($neatHeaders as $neatHeader )
@@ -100,10 +126,11 @@
             @endforeach
 
         </table>
+
+
         <br>
         <a href="{{ URL::previous() }}" class="btn btn-primary pull-right">Back</a>
 
-    </div>
 
 
 
@@ -111,14 +138,15 @@
 
 
 
-@endsection
 
-@section('js')
     <script>
 
         $(document).ready(function () {
             var table = $('#lookupTable').DataTable({
 
+                responsive: true,
+                "paging":   false,
+                "bFilter":   false,
 
                 "columnDefs": [
                     {
@@ -126,25 +154,6 @@
                         "visible": false,
                         "searchable": false
                     }
-
-                ],
-
-                dom: 'Bfrtip',
-
-
-                buttons: [
-                {
-                        extend: 'print',
-                    exportOptions: {
-                        columns: ':visible'
-                    },
-                        title: '{{ $title }}',
-
-                        orientation: 'landscape',
-
-                        }
-
-
 
                 ],
 
@@ -160,9 +169,12 @@
 
 
             });
+
+            new $.fn.dataTable.FixedHeader( table );
         });
+
 
 
     </script>
 
-@endsection
+

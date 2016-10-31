@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
+
+use Jenssegers\Agent\Agent;
+
+
 class LookupController extends Controller
 {
     /**
@@ -23,31 +27,29 @@ class LookupController extends Controller
     {
         $lookups = Lookup::all();
 
+        $agent = new Agent();
 
-
-        return view('lookups.list',compact('lookups'));
+        if ( $agent->isMobile() ) {
+            return view('lookups.mobile', compact('lookups'));
+        }else{
+            return view('lookups.list', compact('lookups'));
+        }
     }
 
+
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function mobile()
     {
-        //
+        $lookups = Lookup::all();
+
+
+        return view('lookups.mobile',compact('lookups'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -81,7 +83,9 @@ class LookupController extends Controller
             if(count($results) == 0 ){
                 //redirect with errors
                 $arrErrors[0] = "No results found" ;
+                
                 return Redirect::route('lookups')->withErrors($arrErrors);
+                
             }
 
             $firstRecordProperties = get_object_vars($results[0]);
@@ -94,8 +98,18 @@ class LookupController extends Controller
             $arrErrors[0] = "Unable to run report." ;
             Log::error($e->getMessage());
 
-            return Redirect::route('lookups')->withErrors($arrErrors);
+            $agent = new Agent();
+
+            if ( $agent->isMobile() ) {
+                return Redirect::route('mobile')->withErrors($arrErrors);    
+            }{
+                return Redirect::route('lookups')->withErrors($arrErrors);
+            }
+            
+            
+            
         }
+        
         return view('lookups.showLookup',compact('results','title','headers','neatHeaders'));
 
     }
@@ -112,37 +126,6 @@ class LookupController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    
+    
 }

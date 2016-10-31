@@ -20,7 +20,7 @@
                     <div class="col-sm-3">
                         @foreach($lookups as $lookup)
                             <div>
-                                <input type="radio" name="lookup_id" value="{{ $lookup->id }}"> {{ $lookup->name }}
+                                <input type="radio" name="lookup_id" value="{{ $lookup->id }}" required> {{ $lookup->name }}
                             </div>
                         @endforeach
                     </div>
@@ -83,6 +83,8 @@
     {{--This needs to be here--}}
 
 @endsection
+
+
 
 @section('js')
     <script>
