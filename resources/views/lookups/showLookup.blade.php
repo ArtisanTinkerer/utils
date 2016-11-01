@@ -16,18 +16,15 @@
 
 
 
-    <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.3.js">
-    </script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js">
-    </script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js">
-    </script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/fixedheader/3.1.2/js/dataTables.fixedHeader.min.js">
-    </script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js">
-    </script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.1.0/js/responsive.bootstrap.min.js">
-    </script>
+    <script src="/js/jquery-1.12.3.js"></script>
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.bootstrap.min.js"></script>
+    <script src="/js/dataTables.fixedHeader.min.js"></script>
+    <script src="/js/dataTables.responsive.min.js"></script>
+    <script src="/js/responsive.bootstrap.min.js"></script>
+
+
+    <script src="/js/ratchet.js"></script>
 
 
 
