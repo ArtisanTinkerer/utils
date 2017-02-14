@@ -34,11 +34,6 @@
 
 
 
-
-
-
-
-
                 <table id="lookupTable" class="display responsive nowrap" cellspacing="0" width="100%">
 
         {{--<table style="width:100%" class="table-bordered table-responsive table-striped" id="lookupTable">--}}
@@ -100,24 +95,12 @@
                 <tr>
                     @for ($column = 0; $column < count($headers); $column++)
 
-
-
-
-
-
                         <td>
-
-
                             {{ $result->$headers[$column] }}
-
-
                         </td>
-
-
 
                     @endfor
                 </tr>
-
 
                 @endif
             @endforeach
@@ -126,12 +109,9 @@
 
 
         <br>
-        <a href="{{ URL::previous() }}" class="btn btn-primary pull-right">Back</a>
+        {{--<a href="/lookups" class="btn btn-primary pull-right">Back</a>--}}
 
-
-
-
-
+                <button onclick="window.location.href='/lookups'" class="pull-right btn-primary">Back</button>
 
 
 
@@ -155,8 +135,9 @@
                 ],
 
 
-                //This highlghts a row, if there are no assigned faults
+                //This adds the Bootstrap alert class, if there is one in the last column
                 "createdRow": function( row, data, dataIndex ) {
+                    console.log(data);
                     if ( data[data.length-1] != '' ) {
                         $(row).addClass( data[data.length-1] );
                     }

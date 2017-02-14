@@ -67,11 +67,36 @@ class LookupController extends Controller
 
         $SQL = $lookup->sql;
 
-        $SQL = str_replace("{WHERE_TOKEN}", $request->parameter, $SQL);
+        $param = $request->parameter;
+
+        //now we want to be able to do IN
+
+        //so the param needs to be 123;12;45;12
+
+        $parameterArray = explode(";",$param);
+        $SQLInString = "";
+
+        $sizeOfArray = sizeof($parameterArray);
+
+        for($elementOn = 0; $elementOn < $sizeOfArray; $elementOn++){
+
+            $SQLInString .= "'$parameterArray[$elementOn]'";
+
+            //if we arent on the last one, add a comma
+            if($elementOn != $sizeOfArray-1){
+                $SQLInString .=",";
+            }
+
+
+
+        }
+
+        //123456
+        // or 123;123;45;
+
+        $SQL = str_replace("{WHERE_TOKEN}", $SQLInString, $SQL);
 
         $title = $lookup->name;
-
-
 
         try {
 

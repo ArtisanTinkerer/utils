@@ -25,26 +25,16 @@
                         @endforeach
                     </div>
 
-
-
                 </div>
 
-
                 <br>
-
-
-
 
             </div>
             <div class="panel-body">
                 @include('errors.errorMessage')
             </div>
 
-
         </div>
-
-
-
 
 
         <div class="panel panel-primary">
