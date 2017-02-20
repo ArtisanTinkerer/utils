@@ -10,7 +10,10 @@
 
             @include('errors.errorMessage')
 
+
     </div>
+
+
 
 
     <div id="app">

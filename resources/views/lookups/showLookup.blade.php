@@ -111,7 +111,7 @@
         <br>
         {{--<a href="/lookups" class="btn btn-primary pull-right">Back</a>--}}
 
-                <button onclick="window.location.href='/lookups'" class="pull-right btn-primary">Back</button>
+                <button onclick="window.history.back();" class="pull-right btn-primary">Back</button>
 
 
 

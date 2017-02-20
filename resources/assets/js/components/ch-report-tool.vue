@@ -12,7 +12,7 @@
         <div class="panel-body">
 
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-6">
 
                     <div v-for="report in reportsList">
 
@@ -128,12 +128,16 @@ mounted: function () {
 
     created: function () {
 
-    console.log('created');
 
+
+
+    console.log('created');
+        let area = document.URL.substr(document.URL.lastIndexOf('/') + 1);
+        console.log(area);
 
         let self = this;
 
-        axios.get('/getLookups')
+        axios.get('/getLookups/' + area)
             .then(function (response) {
 
                 self.reportsList = response.data;

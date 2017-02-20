@@ -12,15 +12,20 @@
 */
 
 
+//This pulls back the reports, now need this per area
 
-Route::get('/getLookups', [
+Route::get('/getLookups/{area}', [
     'as' => 'lookups.list', 'uses' => 'LookupController@getLookups'
 ]);
 
 
 
+
 Route::get('/', 'LookupController@index');
 
+
+
+Route::get('lookups/{area}', 'LookupController@index');
 Route::get('lookups', 'LookupController@index');
 
 

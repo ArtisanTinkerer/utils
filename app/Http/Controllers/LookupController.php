@@ -23,38 +23,32 @@ class LookupController extends Controller
 
     /**
      * AJAX - this is the new Vue version - just getting the reports
+     * If the URL has and area on, filter by that
+     * or return all reports
+     *
      */
 
-    public function getLookups()
+    public function getLookups($area)
     {
-        return response()->json(Lookup::all());
-    }
 
+        if($area != 'lookups') {
 
+            return response()->json(Lookup::where('area', '=', $area)->get());
 
-
-
-    public function reports()
-    {
-        $lookups = Lookup::all();
-
-        $agent = new Agent();
-
-        if ( $agent->isMobile() ) {
-            return view('lookups.mobile', compact('lookups'));
         }else{
-            return view('lookups.list', compact('lookups'));
+
+            return response()->json(Lookup::all());
+
         }
+
+
     }
-
-
-
 
 
     /**
-     * Display a listing of the resource.
+     * Old, get rid of?
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -70,8 +64,12 @@ class LookupController extends Controller
     }
 
 
+
+
+
     /**
      * Display a listing of the resource.
+     * Old, get rid of?
      *
      * @return \Illuminate\Http\Response
      */
@@ -89,6 +87,8 @@ class LookupController extends Controller
 
 
         foreach($tokensArray as $key => $value){
+
+            //SQL injection?
 
             //now we want to be able to do IN
             //so the param needs to be 123;12;45;12
@@ -121,6 +121,7 @@ class LookupController extends Controller
 
     /**
      * Display the specified resource.
+     * Old, get rid of?
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -134,6 +135,7 @@ class LookupController extends Controller
         $lookup = Lookup::findOrFail($request->lookup_id);
 
         $SQL = $lookup->sql;
+
 
 
         //got here and now we have a tokens array for the parameters
@@ -156,7 +158,7 @@ class LookupController extends Controller
                 //redirect with errors
                 $arrErrors[0] = "No results found" ;
                 
-                return Redirect::route('lookups')->withErrors($arrErrors);
+                return Redirect::back()->withErrors($arrErrors);
                 
             }
 
