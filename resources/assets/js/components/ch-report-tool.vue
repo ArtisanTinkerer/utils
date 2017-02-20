@@ -1,6 +1,10 @@
 <template>
 
     <div class="container">
+
+        <form action="/showLookup" method="get" class="form-horizontal">
+
+
     <div class="panel panel-primary">
         <div class="panel-heading" id="panel-head">
             Available Reports
@@ -12,7 +16,7 @@
 
                     <div v-for="report in reportsList">
 
-                        <input type="radio"name={{report.id}} value={{report.id}} required  v-model="picked"  v-on:change="radioClicked" > {{report.name}}
+                        <input type="radio"name="lookup_id" value={{report.id}}   v-model="picked"  v-on:change="radioClicked" > {{report.name}}
 
                     </div>
 
@@ -22,10 +26,11 @@
             <br>
         </div>
 
-        <div class="panel-body">
-            Error message here.
-        </div>
+
     </div>
+
+
+
 
 
 
@@ -39,10 +44,10 @@
                     <div v-for="token in tokens">
                         <div class="form-group row">
                             <div class="col-xs-6 col-sm-2">
-                                <label for=token>{{token}}</label>
+                                <label for={{token}}>{{token}}</label>
                             </div>
                             <div class="col-xs-6 col-sm-2">
-                                <input type="text" id={{token}}>
+                                <input type="text" id={{token}} name="tokens[{{token}}]">
                             </div>
                         </div>
                     </div>
@@ -52,6 +57,12 @@
             </div>
 
         </div>
+
+            <input type="submit" class = "btn btn-primary pull-right" value="Execute">
+
+
+
+        </form>
 
     </div>
 

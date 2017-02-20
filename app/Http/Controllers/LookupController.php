@@ -21,14 +21,13 @@ class LookupController extends Controller
 
 
 
-    //AJAX
+    /**
+     * AJAX - this is the new Vue version - just getting the reports
+     */
 
     public function getLookups()
     {
-
         return response()->json(Lookup::all());
-
-
     }
 
 
@@ -85,6 +84,41 @@ class LookupController extends Controller
     }
 
 
+
+    public function insertParams(&$SQL,$tokensArray){
+
+
+        foreach($tokensArray as $key => $value){
+
+            //now we want to be able to do IN
+            //so the param needs to be 123;12;45;12
+
+            $parameterArray = explode(";",$value);
+            $SQLInString = "";
+
+            $sizeOfArray = sizeof($parameterArray);
+
+            for($elementOn = 0; $elementOn < $sizeOfArray; $elementOn++){
+
+                $SQLInString .= "'$parameterArray[$elementOn]'";
+
+                //if we arent on the last one, add a comma
+                if($elementOn != $sizeOfArray-1){
+                    $SQLInString .=",";
+                }
+
+            }
+
+            //123456
+            // or 123;123;45;
+
+            $SQL = str_replace("{". $key."}", $SQLInString, $SQL);
+
+        }
+
+    }
+
+
     /**
      * Display the specified resource.
      *
@@ -101,34 +135,13 @@ class LookupController extends Controller
 
         $SQL = $lookup->sql;
 
-        $param = $request->parameter;
 
-        //now we want to be able to do IN
+        //got here and now we have a tokens array for the parameters
 
-        //so the param needs to be 123;12;45;12
-
-        $parameterArray = explode(";",$param);
-        $SQLInString = "";
-
-        $sizeOfArray = sizeof($parameterArray);
-
-        for($elementOn = 0; $elementOn < $sizeOfArray; $elementOn++){
-
-            $SQLInString .= "'$parameterArray[$elementOn]'";
-
-            //if we arent on the last one, add a comma
-            if($elementOn != $sizeOfArray-1){
-                $SQLInString .=",";
-            }
-
-
-
+        if ($request->tokens != null) {
+            $this->insertParams($SQL, $request->tokens);
         }
 
-        //123456
-        // or 123;123;45;
-
-        $SQL = str_replace("{WHERE_TOKEN}", $SQLInString, $SQL);
 
         $title = $lookup->name;
 

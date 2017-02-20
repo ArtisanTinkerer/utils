@@ -37,7 +37,7 @@ Route::post('/lookups', [
 ]);
 
 
-Route::post('/showLookup', [
+Route::get('/showLookup', [
     'as' => 'showLookup', 'uses' => 'LookupController@show'
 ]);
 
