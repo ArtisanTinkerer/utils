@@ -18,6 +18,40 @@ use Jenssegers\Agent\Agent;
 
 class LookupController extends Controller
 {
+
+
+
+    //AJAX
+
+    public function getLookups()
+    {
+
+        return response()->json(Lookup::all());
+
+
+    }
+
+
+
+
+
+    public function reports()
+    {
+        $lookups = Lookup::all();
+
+        $agent = new Agent();
+
+        if ( $agent->isMobile() ) {
+            return view('lookups.mobile', compact('lookups'));
+        }else{
+            return view('lookups.list', compact('lookups'));
+        }
+    }
+
+
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -130,8 +164,7 @@ class LookupController extends Controller
             }{
                 return Redirect::route('lookups')->withErrors($arrErrors);
             }
-            
-            
+
             
         }
         

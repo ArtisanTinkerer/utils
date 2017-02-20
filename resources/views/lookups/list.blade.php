@@ -5,72 +5,28 @@
 @endsection
 
 @section('content')
-    <div class="container">
-        {!! Form::open(array('url' => 'showLookup', 'method' => 'POST', 'class' => 'form-horizontal')) !!}
 
-        <div class="panel panel-primary">
-            <div class="panel-heading" id="panel-head">
-                Available Reports
-            </div>
-            <div class="panel-body">
-
-                <div class="row">
+    <div id="app">
 
 
-                    <div class="col-sm-3">
-                        @foreach($lookups as $lookup)
-                            <div>
-                                <input type="radio" name="lookup_id" value="{{ $lookup->id }}" required> {{ $lookup->name }}
-                            </div>
-                        @endforeach
-                    </div>
-
-                </div>
-
-                <br>
-
-            </div>
-            <div class="panel-body">
-                @include('errors.errorMessage')
-            </div>
-
-        </div>
+        <ch-report-tool>
 
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                Lookup Parameter
-            </div>
-            <div id="paramDiv">
-                <div class="panel-body">
+        </ch-report-tool>
 
-                    <div class="form-group row">
-                        <div class="col-xs-6 col-sm-2">
-
-                            {!! Form::label('param', 'Parameter ', ['class' => 'form-control-label']) !!}
-                        </div>
-
-                        <div class="col-xs-6 col-sm-2">
-                            {!!  Form::text('parameter', null,['class' => 'form-control','multiple' => 'multiple','id' => 'streams']) !!}
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>-
-
-
-
-
-
-
-        {!!  Form::submit('Execute', array('class' => 'btn btn-primary pull-right')) !!}
-        {!!Form::close()!!}
     </div>
 
 
-    {{--This needs to be here--}}
+
+
+
+
+
+
+
+
+
+
 
 @endsection
 

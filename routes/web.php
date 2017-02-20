@@ -13,7 +13,14 @@
 
 
 
+Route::get('/getLookups', [
+    'as' => 'lookups.list', 'uses' => 'LookupController@getLookups'
+]);
+
+
+
 Route::get('/', 'LookupController@index');
+
 Route::get('lookups', 'LookupController@index');
 
 

@@ -6,10 +6,8 @@
 
 	<title>IT Utils</title>
 
-	@include('includes.jQueryBootstrap')
 
-	@include('includes.datatablesCSS')
-	@include('includes.churchillStuffCSS')
+	<link rel="stylesheet" href="{{ elixir('/css/all.css') }}">
 
 	<link rel="shortcut icon" href="/favicon.ico" >
 	@yield('head')
@@ -27,9 +25,9 @@
 @yield('content')
 
 
-@include('includes.churchillJS')
-@include('includes.datatablesJS')
 
+<script src="{{ elixir('/js/all.js') }}"></script>
+<script src="{{ elixir('/js/app.js') }}"></script>
 @yield('js')
 
 

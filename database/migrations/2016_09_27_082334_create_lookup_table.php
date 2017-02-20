@@ -16,7 +16,8 @@ class CreateLookupTable extends Migration
         Schema::create('lookups', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
-            $table->string('sql');
+            $table->text('sql');
+            $table->string('area');
 
         });
     }
@@ -28,6 +29,6 @@ class CreateLookupTable extends Migration
      */
     public function down()
     {
-        Schema::drop('things');
+        Schema::drop('lookups');
     }
 }
