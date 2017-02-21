@@ -12,33 +12,40 @@
 */
 
 
-//This pulls back the reports, now need this per area
+
+Route::get('lookups/back', 'LookupController@back');
+
+//This is so we can enter this application,
+//with all reports displayed or  filtered by area
+Route::get('lookups/{area}', 'LookupController@index');
+Route::get('lookups', 'LookupController@index');
+Route::get('/', 'LookupController@index');
+
+
+
+
+//This pulls back the reports, now need this per area.
+//This is because there is multiple entry points, to this application.
+//Each entry point is an area, which will have its own reports.
 
 Route::get('/getLookups/{area}', [
     'as' => 'lookups.list', 'uses' => 'LookupController@getLookups'
 ]);
 
 
+//If the URL does not have an area on it, just get all
 
-
-Route::get('/', 'LookupController@index');
-
-
-
-Route::get('lookups/{area}', 'LookupController@index');
-Route::get('lookups', 'LookupController@index');
-
-
-Route::get('mobile', 'LookupController@mobile');
-
-
-Route::post('/mobile', [
-    'as' => 'mobile', 'uses' => 'LookupController@mobile'
+Route::get('/getLookups', [
+    'as' => 'lookups.list', 'uses' => 'LookupController@getLookups'
 ]);
 
 
-Route::post('/lookups', [
-    'as' => 'lookups', 'uses' => 'LookupController@index'
+
+//These are for the mobile hand scanners
+Route::get('mobile', 'LookupController@mobile');
+
+Route::post('/mobile', [
+    'as' => 'mobile', 'uses' => 'LookupController@mobile'
 ]);
 
 
@@ -47,6 +54,4 @@ Route::get('/showLookup', [
 ]);
 
 
-/*Route::get('/lookup', function () {
-    return view('lookup');
-});*/
+

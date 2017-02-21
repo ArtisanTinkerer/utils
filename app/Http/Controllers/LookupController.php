@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
+use Illuminate\Support\Facades\Route;
+
 
 use Jenssegers\Agent\Agent;
 
@@ -28,42 +30,53 @@ class LookupController extends Controller
      *
      */
 
-    public function getLookups($area)
+    public function getLookups($area="lookups")
     {
 
         if($area != 'lookups') {
             $lookups = Lookup::where('area', '=', $area)->get();
-
         }else{
-
             $lookups =Lookup::all();
-
         }
-
 
 
         foreach($lookups as $lookup){
-
-
             $lookup->sql = $this->strip_sqlcomment($lookup->sql);
-
         }
 
-
         return response()->json($lookups);
+    }
+
+
+    public function back()
+    {
+
+
+        $entryPoint = session('entryPoint');
+
+
+        return redirect($entryPoint);
+
 
     }
 
 
     /**
-     * Old, get rid of?
+     * Application entry point
+     * Just shows the view, everything else is AJAX
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $lookups = Lookup::all();
 
+        //store this, so that when the back button is pressed, we come back to the correct page/area
+
+        $entryPoint = $request->decodedPath();
+        session(['entryPoint' => $entryPoint]);
+
+
+        //Show a different page for the mobile devices
         $agent = new Agent();
 
         if ( $agent->isMobile() ) {
