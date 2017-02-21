@@ -55,3 +55,9 @@ Route::get('/showLookup', [
 
 
 
+//Catch all
+Route::any('{query}',
+    function () {
+        return redirect('/');
+    })
+    ->where('query', '.*');
