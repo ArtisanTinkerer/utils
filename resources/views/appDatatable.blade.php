@@ -7,7 +7,7 @@
 	<title>IT Utils</title>
 
 
-	<link rel="stylesheet" href="{{ elixir('/css/all.css') }}">
+	<link rel="stylesheet" href="{{ elixir('css/all.css') }}">
 
 	<link rel="shortcut icon" href="/favicon.ico" >
 
@@ -37,8 +37,8 @@
 
 
 
-<script src="{{ elixir('/js/all.js') }}"></script>
-<script src="{{ elixir('/js/app.js') }}"></script>
+<script src="{{ elixir('js/all.js') }}"></script>
+<script src="{{ elixir('js/app.js') }}"></script>
 @yield('js')
 
 
