@@ -13,94 +13,10 @@ class LookupsTableSeeder extends Seeder
     {
         DB::table('lookups')->insert([
 
+
+
                 [
                     'id' => "1",
-                    'name' => 'Test Lookup',
-                    'sql' => 'SELECT * FROM MANUFACTURED_PRODUCTS WHERE part_no IN ({WHERE_TOKEN},{WHERE_TOKEN},{ANOTHER_TOKEN})',
-                    'area' => 'test',
-                ],
-                [
-                    'id' => "2",
-                    'name' => 'Pallet Shortage',
-                    'sql' => 'select sq_2.part_no,sq_2.catalog_desc, NVL(sq_4.cartons,0) - (sq_2.qty_pick_reported / pec.units_per_l1)  difference,
-sq_2.contract,
-sq_2.order_no,
-sq_2.pick_list_no,
-NVL(sq_4.cartons,0) qty_on_pallet,
-sq_2.qty_pick_reported / pec.units_per_l1 qty_pick_reported,
-sq_3.qty_ordered / pec.units_per_l1 qty_ordered,
---sq_4.cartons - (sq_2.qty_pick_reported / pec.units_per_l1)  difference,
-case when NVL(sq_4.cartons,0) - (sq_2.qty_pick_reported / pec.units_per_l1) < 0 then \'danger\' else null end row_highlight
-
-
-from (select  sq_1.contract,
-              sq_1.order_no,
-              sq_1.pick_list_no,
-              sq_1.catalog_no part_no,
-              sq_1.catalog_desc,
-              sum(sq_1.qty_pick_reported) qty_pick_reported
-              from (select 
-                    plj.contract,
-                    plj.order_no,
-                    plj.pick_list_no,
-                    plj.catalog_no,
-                    plj.catalog_desc,
-                    case when plj.qty_picked = 0 then plj.qty_shipped else plj.qty_picked end qty_pick_reported
-                    from ifsapp.create_pick_list_join_new plj
-                    --where plj.pick_list_no = \'417236\'
-                   where plj.order_no =  \'{WHERE_TOKEN}\'
-                   --where plj.order_no =  \'&WHERE_TOKEN\'
-                    ) sq_1
-              group by sq_1.contract,sq_1.order_no,sq_1.pick_list_no,sq_1.catalog_no,sq_1.catalog_desc
-              ) sq_2
-              
-left outer join  (select 
-                 col.contract,
-                 col.order_no,
-                 col.part_no,                
-                 sum(case when col.qty_invoiced = 0 then qty_on_order else col.qty_invoiced end) qty_ordered
-                 from ifsinfo.cc_customer_order_line col 
-                 where col.order_no =  \'{WHERE_TOKEN}\'
-                 group by col.contract,col.order_no,col.part_no
-                ) sq_3
-
-on sq_2.contract = sq_3.contract
-and sq_2.order_no = sq_3.order_no
-and sq_2.part_no = sq_3.part_no
-
-
-left outer join (select 
-                  cpl.pallet_no,
-                  cpl.pick_list_no,
-                  cpl.order_no,
-                  cpl.part_no,
-                  sum(cpl.quantity) quantity,
-                  sum(cpl.cartons) cartons
-                  from ifsapp.chc_pallet_lines cpl
-                  -- remove the lines that are non IFS products
-                  where cpl.part_type <> \'NONIFS\'
-                  and cpl.order_no  =  \'{WHERE_TOKEN}\'
-                  group by cpl.pallet_no,cpl.pick_list_no,cpl.order_no,cpl.part_no
-            ) sq_4
-
-on sq_2.order_no = sq_4.order_no
-and sq_2.part_no = sq_4.part_no
-left outer join ccapp.part_ext_cat pec
-on sq_2.part_no = pec.part_no
-order by difference asc
-                    ',
-                    'area' => 'other',
-                ],
-                [
-                    'id' => "3",
-                    'name' => 'Top 20',
-                    'sql' => 'SELECT * FROM MANUFACTURED_PRODUCTS WHERE ROWNUM < 20',
-                    'area' => 'test',
-                ],
-
-
-                [
-                    'id' => "4",
                     'name' => 'Pallet Shortages',
                     'sql' => '
                     select sq_3.part_no,sq_3.catalog_desc, NVL(sq_4.cartons,0) - (nvl(sq_2.qty_pick_reported,0) / pec.units_per_l1)  difference,
@@ -127,7 +43,7 @@ from   (select
                  sum(case when col.qty_invoiced = 0 then col.buy_qty_due
                  else col.qty_invoiced end) qty_ordered
                  from ifsinfo.cc_customer_order_line col 
-                 where col.order_no IN ({WHERE_TOKEN})
+                 where col.order_no IN ({Order Number})
                  --where col.order_no IN (\'&WHERE_TOKEN\')
                  and col.objstate in ( \'Picked\',\'Released\')
                  
@@ -148,7 +64,7 @@ left outer join (select  sq_1.contract,
                     plj.catalog_desc,
                     case when plj.qty_picked = 0 then plj.qty_shipped else plj.qty_picked end qty_pick_reported
                     from ifsapp.create_pick_list_join_new plj
-                   where plj.order_no IN ({WHERE_TOKEN})
+                   where plj.order_no IN ({Order Number})
                    --where plj.order_no IN (\'&WHERE_TOKEN\')
                     ) sq_1
               group by sq_1.contract,sq_1.order_no,sq_1.pick_list_no,sq_1.catalog_no,sq_1.catalog_desc
@@ -170,7 +86,7 @@ left outer join (select
                   from ifsapp.chc_pallet_lines cpl
                   -- remove the lines that are non IFS products
                   where cpl.part_type <> \'NONIFS\'
-                  and cpl.order_no  IN ({WHERE_TOKEN})
+                  and cpl.order_no  IN ({Order Number})
                   --and cpl.order_no  IN (\'&WHERE_TOKEN\')
                   
                   group by cpl.pallet_no,cpl.pick_list_no,cpl.order_no,cpl.part_no
@@ -184,11 +100,11 @@ on sq_3.part_no = pec.part_no
 
 order by difference asc
                     ',
-                    'area' => 'test',
+                    'area' => 'pallete',
                 ],
 
                 [
-                    'id' => "5",
+                    'id' => "2",
                     'name' => 'Find Manifest number',
                     'sql' => 'select
 mt.manifest_no,
@@ -196,12 +112,12 @@ mt.pick_list_no,
 mt.order_no,
 mt.quantity
 from ifsapp.chc_manifest_temp_wf mt
-where mt.order_no in ({WHERE_TOKEN})',
-                    'area' => 'test',
+where mt.order_no in ({Order Number})',
+                    'area' => 'pallete',
                 ],
 
                 [
-                    'id' => "6",
+                    'id' => "3",
                     'name' => 'Shipping Information Order No',
                     'sql' => 'select
 to_date(substr(cm.objversion,1,8),\'YYYY/MM/DD\') pallet_date,
@@ -237,13 +153,13 @@ left outer join ifsinfo.cc_customer_order co
 on pl.order_no = co.order_no
 left outer join ifsinfo.customers c
 on co.customer_no = c.customer_no
-where pl.order_no in ({WHERE_TOKEN})
+where pl.order_no in ({Order Number})
 group by cm.objversion,cm.manifest_no,pl.pallet_no',
-                    'area' => 'test',
+                    'area' => 'pallete',
                 ],
 
                 [
-                    'id' => "7",
+                    'id' => "4",
                     'name' => 'Shipping Information Customer Account',
                     'sql' => 'select
 to_date(substr(cm.objversion,1,8),\'YYYY/MM/DD\') pallet_date,
@@ -278,14 +194,14 @@ left outer join ifsinfo.cc_customer_order co
 on pl.order_no = co.order_no
 left outer join ifsinfo.customers c
 on co.customer_no = c.customer_no
-where co.customer_no in ({WHERE_TOKEN})
+where co.customer_no in ({Customer Number})
 --and to_date(to_char(sysdate,\'YYYY/MM/DD\'),\'YYYY/MM/DD\')-1 = to_date(substr(cm.objversion,1,8),\'YYYY/MM/DD\')
 group by cm.objversion,cm.manifest_no,pl.pallet_no',
-                    'area' => 'test',
+                    'area' => 'pallete',
                 ],
 
                 [
-                    'id' => "8",
+                    'id' => "5",
                     'name' => 'Shipping test',
                     'sql' => 'select 
 sq_3.pallet_date,
@@ -344,7 +260,7 @@ on co.customer_no = c.customer_no
 
 where pl.pallet_no in (select distinct pl.pallet_no 
                         from ifsapp.chc_pallet_lines pl
-                        where pl.order_no in ({WHERE_TOKEN})
+                        where pl.order_no in ({Order Number})
                         --where pl.order_no in (\'&WHERE_TOKEN\')
                      )
 group by cm.objversion,cm.manifest_no,pl.pallet_no 
@@ -357,7 +273,7 @@ left outer join (select sq_6.order_no,substr(sys_connect_by_path ( sq_6.order_no
                                       from ifsapp.chc_pallet_lines pl
                                       where pl.pallet_no in (select distinct pl.pallet_no 
                                                               from ifsapp.chc_pallet_lines pl
-                                                              where pl.order_no in ({WHERE_TOKEN})
+                                                              where pl.order_no in ({Order Number})
                                                               --where pl.order_no in (\'&WHERE_TOKEN\')
                                                              ) 
                                      ) sq_5
@@ -368,11 +284,11 @@ left outer join (select sq_6.order_no,substr(sys_connect_by_path ( sq_6.order_no
                  ) sq_6
                 
 on sq_3.order_no = sq_6.order_no',
-                    'area' => 'test',
+                    'area' => 'pallete',
                 ],
 
                 [
-                    'id' => "9",
+                    'id' => "6",
                     'name' => 'Palletise Overview',
                     'sql' => 'select 
 sq_2.order_no,
@@ -454,7 +370,7 @@ on sq_2.order_no = sq_4.order_no
 order by sq_4.activity_date  desc ,sq_2.order_no,sq_2.customer_no,sq_2.name
 
 ',
-                    'area' => 'test',
+                    'area' => 'pallete',
                 ]
 
             ]

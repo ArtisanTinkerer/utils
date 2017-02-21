@@ -32,15 +32,25 @@ class LookupController extends Controller
     {
 
         if($area != 'lookups') {
-
-            return response()->json(Lookup::where('area', '=', $area)->get());
+            $lookups = Lookup::where('area', '=', $area)->get();
 
         }else{
 
-            return response()->json(Lookup::all());
+            $lookups =Lookup::all();
 
         }
 
+
+
+        foreach($lookups as $lookup){
+
+
+            $lookup->sql = $this->strip_sqlcomment($lookup->sql);
+
+        }
+
+
+        return response()->json($lookups);
 
     }
 
@@ -82,13 +92,17 @@ class LookupController extends Controller
     }
 
 
-
+    /**
+     * This replaces the tokens in the SQL
+     * with the tokens and values in the array
+     *
+     * @param $SQL
+     * @param $tokensArray
+     */
     public function insertParams(&$SQL,$tokensArray){
 
 
         foreach($tokensArray as $key => $value){
-
-            //SQL injection?
 
             //now we want to be able to do IN
             //so the param needs to be 123;12;45;12
@@ -120,6 +134,19 @@ class LookupController extends Controller
 
 
     /**
+     * Get the comments from the SQL
+     * http://stackoverflow.com/questions/9690448/regular-expression-to-remove-comments-from-sql-statement
+     * @param string $string
+     * @return mixed|string
+     */
+    private function strip_sqlcomment ($string = '') {
+        $RXSQLComments = '@(--[^\r\n]*)|(\#[^\r\n]*)|(/\*[\w\W]*?(?=\*/)\*/)@ms';
+        return (($string == '') ?  '' : preg_replace( $RXSQLComments, '', $string ));
+    }
+
+
+
+    /**
      * Display the specified resource.
      * Old, get rid of?
      *
@@ -134,7 +161,9 @@ class LookupController extends Controller
 
         $lookup = Lookup::findOrFail($request->lookup_id);
 
-        $SQL = $lookup->sql;
+        $SQL = $this->strip_sqlcomment($lookup->sql);
+
+        //strip the comments
 
 
 

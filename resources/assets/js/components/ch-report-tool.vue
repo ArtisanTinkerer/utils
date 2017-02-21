@@ -47,7 +47,7 @@
                                 <label for={{token}}>{{token}}</label>
                             </div>
                             <div class="col-xs-6 col-sm-2">
-                                <input type="text" id={{token}} name="tokens[{{token}}]">
+                                <input type="text" id={{token}} name="tokens[{{token}}]"  v-on:keydown.enter.prevent=''>
                             </div>
                         </div>
                     </div>
