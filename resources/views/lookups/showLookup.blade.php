@@ -7,30 +7,14 @@
 
     <title>IT Utils</title>
 
-    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css">
 
-
-
-
-
-    <script src="/js/jquery-1.12.3.js"></script>
-    <script src="/js/jquery.dataTables.min.js"></script>
-    <script src="/js/dataTables.bootstrap.min.js"></script>
-    <script src="/js/dataTables.fixedHeader.min.js"></script>
-    <script src="/js/dataTables.responsive.min.js"></script>
-    <script src="/js/responsive.bootstrap.min.js"></script>
-
-
-    <script src="/js/ratchet.js"></script>
-
+    <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
 
 
 </head>
 
 <body>
+
 
 
 
@@ -115,9 +99,12 @@
                 <button onclick="window.location='{{ url("lookups/back") }}'" class="pull-right btn-primary">Back</button>
 
 
+                <script src="{{ elixir('js/all.js') }}"></script>
+                {{--<script src="{{ elixir('js/app.js') }}"></script>--}}
 
+</body>
 
-
+</html>
 
     <script>
 
