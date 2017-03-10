@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Log;
@@ -72,7 +73,7 @@ class LookupController extends Controller
 
         //store this, so that when the back button is pressed, we come back to the correct page/area
 
-        $entryPoint = $request->decodedPath();
+        $entryPoint = array_shift((explode(".",$_SERVER['HTTP_HOST'])));
         session(['entryPoint' => $entryPoint]);
 
 
