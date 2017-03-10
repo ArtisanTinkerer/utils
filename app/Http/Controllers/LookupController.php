@@ -119,8 +119,11 @@ class LookupController extends Controller
 
             //now we want to be able to do IN
             //so the param needs to be 123;12;45;12
+            //I need to trim the value here
 
-            $parameterArray = explode(";",$value);
+            $trimmedValue = trim($value);
+
+            $parameterArray = explode(";",$trimmedValue);
             $SQLInString = "";
 
             $sizeOfArray = sizeof($parameterArray);
@@ -171,6 +174,9 @@ class LookupController extends Controller
 
 
         $SQL = "";
+
+
+
 
         $lookup = Lookup::findOrFail($request->lookup_id);
 
