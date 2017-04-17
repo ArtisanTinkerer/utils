@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
-use Illuminate\Support\Facades\Route;
+
 
 
 use Jenssegers\Agent\Agent;
@@ -81,9 +81,9 @@ class LookupController extends Controller
         $agent = new Agent();
 
         if ( $agent->isMobile() ) {
-            return view('lookups.mobile', compact('lookups'));
+            return view('lookups.mobile');
         }else{
-            return view('lookups.list', compact('lookups'));
+            return view('lookups.list');
         }
     }
 

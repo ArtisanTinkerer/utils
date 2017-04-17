@@ -5,6 +5,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import Vue from 'vue';
+
 require('./bootstrap');
 
 /**
@@ -13,8 +15,10 @@ require('./bootstrap');
  * the application, or feel free to tweak this setup for your needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+Vue.component('ch-report-tool', require('./components/ch-report-tool.vue'));
 
-const app = new Vue({
-    el: 'body'
+Vue.component('ch-calendar', require('./components/ch-calendar.vue'));
+
+const vm = new Vue({
+    el: '#app'
 });

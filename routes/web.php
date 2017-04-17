@@ -12,6 +12,14 @@
 */
 
 
+Route::get('/calendar', 'CalendarController@index');
+
+
+Route::resource('calendar', 'CalendarController');
+
+
+
+
 
 Route::get('lookups/back', 'LookupController@back');
 

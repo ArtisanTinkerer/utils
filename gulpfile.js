@@ -1,6 +1,8 @@
-const elixir = require('laravel-elixir');
+<!-- language: lang-js -->
+var elixir = require('laravel-elixir')
 
-require('laravel-elixir-vue');
+require('laravel-elixir-vue-2');
+
 
 /*
  |--------------------------------------------------------------------------
@@ -27,7 +29,10 @@ elixir(function(mix) {
         'buttons.dataTables.min.css',
         'select.dataTables.min.css',
         'dataTables.bootstrap.min.css',
-        'keyTable.dataTables.min.css'
+        'keyTable.dataTables.min.css',
+        'fixedHeader.bootstrap.min.css',
+        'fullcalendar.min.css',
+        'churchillcalendar.css'
 
     ]);
 
@@ -40,7 +45,6 @@ elixir(function(mix) {
         'jquery.dataTables.js',
         'dataTables.buttons.min.js',
         'dataTables.select.min.js',
-        'dataTables.keytable.min.js',
         'dataTables.editor.js',
         'jszip.min.js',
         'pdfmake.min.js',
@@ -49,12 +53,17 @@ elixir(function(mix) {
         'buttons.print.min.js',
         'dataTables.responsive.min.js',
         'dataTables.bootstrap.min.js',
-        'axios.js'
+        'dataTables.fixedHeader.min.js',
+        'responsive.bootstrap.min.js',
+        'ratchet.js',
+        'axios.js',
+        'resources/assets/js/moment.min.js',
+        'fullcalendar.min.js'
 
 
     ]);
 
-    mix.version(['css/all.css', 'js/all.js']);
+    mix.version(['css/all.css', 'js/all.js','js/app.js']);
 
 
 });

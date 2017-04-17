@@ -1,69 +1,51 @@
 <template>
 
     <div class="container">
-
         <form action="/showLookup" method="get" class="form-horizontal">
 
-
-    <div class="panel panel-primary">
-        <div class="panel-heading" id="panel-head">
-            Available Reports
-        </div>
-        <div class="panel-body">
-
-            <div class="row">
-                <div class="col-sm-6">
-
-                    <div v-for="report in reportsList">
-
-                        <input type="radio"name="lookup_id" value={{report.id}}   v-model="picked"  v-on:change="radioClicked" > {{report.name}}
-
-                    </div>
-
-
+            <div class="panel panel-primary">
+                <div class="panel-heading" id="panel-head">
+                    Available Reports
                 </div>
-            </div>
-            <br>
-        </div>
-
-
-    </div>
-
-
-
-
-
-
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                Lookup Parameter
-            </div>
-            <div id="paramDiv">
                 <div class="panel-body">
 
-                    <div v-for="token in tokens">
-                        <div class="form-group row">
-                            <div class="col-xs-6 col-sm-2">
-                                <label for={{token}}>{{token}}</label>
-                            </div>
-                            <div class="col-xs-6 col-sm-10">
-                                <input class="form-control" type="text" id={{token}} name="tokens[{{token}}]"  v-on:keydown.enter.prevent=''>
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div v-for="report in reportsList">
+
+                                <input type="radio" name="lookup_id" :value="report.id" v-model="picked"
+                                       v-on:change="radioClicked"> {{report.name}}
                             </div>
                         </div>
                     </div>
-
-
+                    <br>
                 </div>
             </div>
 
-        </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Lookup Parameter
+                </div>
+                <div id="paramDiv">
+                    <div class="panel-body">
 
-            <input type="submit" class = "btn btn-primary pull-right" value="Execute">
-
-
+                        <div v-for="token in tokens">
+                            <div class="form-group row">
+                                <div class="col-xs-6 col-sm-2">
+                                    <label for:="token">{{token}}</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-10">
+                                    <input class="form-control" type="text" v-bind:id="token" :name="`tokens[${token}]`" v-on:keydown.enter.prevent=''>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary pull-right" value="Execute">
 
         </form>
-
     </div>
 
 </template>
@@ -121,18 +103,15 @@ mounted: function () {
 
     console.log('mounted');
 
-
-
     },
-
 
     created: function () {
 
-
-
-
     console.log('created');
-        let area = document.URL.substr(document.URL.lastIndexOf('/') + 1);
+
+        var pathArray = window.location.host.split( '.' );
+        var area = pathArray[0];
+
         console.log(area);
 
         let self = this;
