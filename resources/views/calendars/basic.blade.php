@@ -7,11 +7,6 @@
 
         <title>Churchill Calendar</title>
 
-
-
-
-
-
         <script>
             // rename myToken as you like
             window.Laravel = <?php echo json_encode([
@@ -26,7 +21,7 @@
 
 
     <div id='app'>
-        <ch-calendar>
+        <ch-calendar entrypoint={{$entryPoint}}>
 
 
         </ch-calendar>

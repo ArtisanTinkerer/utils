@@ -10,6 +10,7 @@
     require('fullcalendar')
 
     export default {
+        props: ['entrypoint'],
         mounted() {
 
             $('#calendar').fullCalendar({
@@ -20,31 +21,28 @@
 			},
 			locale: 'en',
 
-			events: [
-				{
-					title: 'All Day Event',
-					start: '2017-04-09'
-				}
+			 events: {
+                url: '/fetchEvents',
+                type: 'GET',
+                data: {
+                    entryPoint: this.entrypoint,
 
-				],
+                },
+                error: function() {
+                alert('there was an error while fetching events!');
+                },
+                color: 'yellow',   // a non-ajax option
+                textColor: 'black' // a non-ajax option
+            },//events
 
             weekends:true,
 			defaultView: 'basicWeek',
-
                  eventClick: function() {
-                alert('event has been clicked!');
-               }
-});
+                    alert('event has been clicked!');
+                 }
+            });
 
-
-        },
-
-
-        events: {
-             'day::clicked': function(date)
-            {
-            console.log(date);
-            }
+        }//mounted
   }
-    }
+
 </script>

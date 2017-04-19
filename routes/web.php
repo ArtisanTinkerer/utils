@@ -11,15 +11,19 @@
 |
 */
 
+//The calendar routes
+
 
 Route::get('/calendar', 'CalendarController@index');
 
+Route::get('/fetchEvents', 'CalendarController@fetchEvents');
 
 Route::resource('calendar', 'CalendarController');
 
 
 
 
+//The lookup routes
 
 Route::get('lookups/back', 'LookupController@back');
 
