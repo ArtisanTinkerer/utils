@@ -16,10 +16,25 @@ abstract class ParamaterizedQuery implements ExternalQueryInterface
 
     protected $SQL;
 
-    public function getResults($paramsArray,$entryPoint)
+
+    /**
+     * Gets the MYSQL  query from the Database,
+     * Insert the parameters,
+     * Execute the query.
+     * @param $paramsArray
+     * @param $entryPoint
+     * @param $name
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+
+    public function getResults($paramsArray,$entryPoint,$name)
     {
 
-        $this->SQL = Calendar::where('area',$entryPoint)->firstOrFail()->sql;
+        $this->SQL = Calendar::where([
+            ['area','=',$entryPoint],
+            ['name','=',$name]
+            ])
+            ->firstOrFail()->sql;
 
         $this->insertParams($paramsArray);
 

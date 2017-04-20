@@ -28,8 +28,22 @@ class CalendarController extends Controller
      */
     public function  fetchEvents(OracleQuery $queryObject,Request $request){
 
-      return $queryObject->getResults($request->only('start','end'),$request->entryPoint);
+      return $queryObject->getResults($request->only('start','end'),$request->entryPoint,"summary");
 
     }
+
+
+    /**
+     * Ajax call to retrieve the detail when user clicks on event
+     * @param OracleQuery $queryObject
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function  eventDetails(OracleQuery $queryObject,Request $request){
+
+        return $queryObject->getResults($request->only('delivery_date','customer_no','booking_time'),$request->entryPoint,"detail");
+
+    }
+
 
 }

@@ -17,6 +17,8 @@
 Route::get('/calendar', 'CalendarController@index');
 
 Route::get('/fetchEvents', 'CalendarController@fetchEvents');
+Route::get('/eventDetails', 'CalendarController@eventDetails');
+
 
 Route::resource('calendar', 'CalendarController');
 

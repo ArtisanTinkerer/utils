@@ -118,9 +118,7 @@ mounted: function () {
 
         axios.get('/getLookups/' + area)
             .then(function (response) {
-
                 self.reportsList = response.data;
-
 
             })
             .catch(function (error) {

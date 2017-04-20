@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\DB;
 
 class OracleQuery extends ParamaterizedQuery
 {
+    /**
+     * Connects to the Oracle DB.
+     *  Returns the query results.
+     *
+     * @return mixed
+     */
     protected function executeQuery()
     {
         $conOracle = DB::connection('oracle');

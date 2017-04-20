@@ -9,6 +9,6 @@ namespace App\Interfaces;
 
 Interface ExternalQueryInterface{
 
-   public function getResults($parameters,$entryPoint);
+   public function getResults($parameters,$entryPoint,$name);
 
 }
