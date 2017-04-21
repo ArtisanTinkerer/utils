@@ -1,12 +1,21 @@
 
 
-body {
+.churchill-body {
     margin: 40px 10px;
     padding: 0;
     font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
     font-size: 14px;
-    background: white;
+    background: #101D40;
 }
+
+
+
+.fc-button{
+    background-color: white;
+    color: #101D40;
+
+}
+
 
 #calendar {
     max-width: 900px;
@@ -14,26 +23,36 @@ body {
 }
 
 h2 {
-    color: #101D40;
+    color: white;
 }
-
 
 
 span {
-    color: #101D40;
+    color: black;
+    background-color: white;
 }
 
+
+
+
+
 span.fc-title{
-    color: white;
-    background-color: #101D40;
+    color: black;
+    background-color: white;
 }
 
 div.fc-content{
-    color: white;
-    background-color: #101D40;
+    color: black;
+    background-color: white;
 }
 
-/*//the modal stuff*/
+.fc-day-grid-event{
+    border-color: black !important;
+    background-color: black;
+}
+
+
+
 
 
 .modal-mask {
@@ -57,6 +76,17 @@ div.fc-content{
     transition: all .3s ease;
     font-family: Helvetica, Arial, sans-serif;
 }
+
+.modal-header{
+    background-color: #101D40;
+    color: white;
+}
+
+.modal-footer{
+    background-color: #101D40;
+    color: white;
+}
+
 
 .modal-header h3 {
     margin-top: 0;
@@ -97,3 +127,21 @@ div.fc-content{
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
 }
+
+.fc-day-header  span{
+    color: white;
+    background-color: #101D40;
+}
+
+.fc-day-header.fc-today{
+    color: black;
+    background-color: yellow;
+}
+
+
+
+.fc-day-header.fc-today  span{
+    color: black;
+    background-color: yellow;
+}
+

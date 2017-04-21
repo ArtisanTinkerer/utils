@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
 
     </head>
-    <body>
+    <body class="churchill-body">
 
 
     <div id='app'>

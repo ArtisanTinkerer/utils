@@ -34,6 +34,7 @@ elixir(function(mix) {
         'fullcalendar.min.css',
         'churchillcalendar.css'
 
+
     ]);
 
 
