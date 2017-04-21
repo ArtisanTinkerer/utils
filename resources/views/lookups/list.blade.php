@@ -1,4 +1,4 @@
-@extends('appDatatable')
+@extends('layouts.appDatatable')
 
 @section('head')
 

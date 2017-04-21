@@ -7,16 +7,11 @@
 
     <title>IT Utils</title>
 
-
     <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
-
 
 </head>
 
 <body>
-
-
-
 
                 <table id="lookupTable" class="display responsive nowrap" cellspacing="0" width="100%">
 

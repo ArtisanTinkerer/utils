@@ -7,7 +7,7 @@
     </div>
 
 
-        <div class="modal-mask"  v-show="showModal"  v-on:click="closeModal" transition="modal">
+        <div class="modal-mask"  v-show="showModal"  v-on:click="closeModal">
             <div class="modal-dialog">
                 <div class="modal-content">
 
