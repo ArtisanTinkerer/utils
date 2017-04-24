@@ -1736,7 +1736,6 @@ table.dataTable.fixedHeader-floating,table.dataTable.fixedHeader-locked{backgrou
 }
 
 
-
 .fc-button{
     background-color: white;
     color: #101D40;
@@ -1744,18 +1743,14 @@ table.dataTable.fixedHeader-floating,table.dataTable.fixedHeader-locked{backgrou
 }
 
 
-
 h2 {
     color: white;
 }
-
 
 span {
     color: black;
     background-color: white;
 }
-
-
 
 
 
@@ -1773,9 +1768,6 @@ div.fc-content{
     border-color: black !important;
     background-color: black;
 }
-
-
-
 
 
 .modal-mask {
