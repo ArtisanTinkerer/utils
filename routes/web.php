@@ -11,6 +11,17 @@
 |
 */
 
+
+//The reporting routes
+
+Route::get('/compile', 'ReportController@compile');
+
+Route::get('/process', 'ReportController@process');
+Route::get('/display', 'ReportController@display');
+
+
+
+
 //The calendar routes
 
 

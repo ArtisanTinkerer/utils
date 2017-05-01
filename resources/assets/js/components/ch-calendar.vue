@@ -92,7 +92,7 @@
             },//events
 
             weekends:true,
-			defaultView: 'basicWeek',dir
+			defaultView: 'basicWeek',
 
                  eventClick:  function(event, jsEvent, view) {
 
