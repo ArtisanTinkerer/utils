@@ -6,17 +6,20 @@ use App\Classes\ReportFactory;
 
 class ReportController extends Controller
 {
+
+
     /**
-     * Display a listing of the resource.
+     * Create a report object.
      *
-     * @return \Illuminate\Http\Response
+     * @param ReportFactory $reportFactory
+     * @return mixed
      */
     public function display(ReportFactory $reportFactory)
     {
 
         $report = $reportFactory->createReport('jasper');
 
-        return $report->getReport();
+        return $report->displayReport();
 
     }
 

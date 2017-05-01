@@ -8,12 +8,13 @@
 
 namespace App\Classes;
 
+use App\Interfaces\ReportInterface;
 use JasperPHP\JasperPHP;
 use Illuminate\Support\Facades\Response;
 
 
-class JasperReport
-{
+class JasperReport extends ChurchillReport implements ReportInterface{
+
 
 
     private function compile()
@@ -66,7 +67,7 @@ class JasperReport
         ]);
     }
 
-    public function getReport(){
+    public function displayReport(){
         $this->compile();
         $this->process();
        return $this->display();

@@ -8,7 +8,7 @@
 
 namespace App\Classes;
 
-use JasperPHP\JasperPHP;
+use App\Classes\JasperReport;
 
 class ReportFactory
 {
