@@ -1,4 +1,4 @@
-# Simple Report, lookups and Calendar Utilities
+# Simple Report, Lookups and Calendar Utilities
 
 
 ## Lookups
